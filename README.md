@@ -1,18 +1,20 @@
-# [Nome do projeto]
+# Financelab
 
-[Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.]
+O FinanceLab vai te permitir monitorar e controlar os seus investimentos a um clique! Insira seus investimentos e o ROI de cada um e tenha em mãos as estatísticas e os KPIs necessários para a melhor tomada de decisão!
 
 ## Alunos integrantes da equipe
 
-* [Nome completo do aluno 1]
-* [Nome completo do aluno 2]
-* [Nome completo do aluno 3]
-* [Nome completo do aluno 4]
+*Ana Carolina de Carvalho Corrêa
+*Fabiana Dinelli Salvático de Paula Kraft
+*Fernando Lúcio Mello do Couto
+*Henrique Pinto Santos
+*Pedro Henrique Fernandes Machado
+*Pedro Talma Toledo
 
 ## Professores responsáveis
 
-* [Nome completo do professor 1]
-* [Nome completo do professor 2]
+* Eveline Alonso Veloso
+* Luiz Henrique da Costa Silva
 
 ## Instruções de utilização
 
