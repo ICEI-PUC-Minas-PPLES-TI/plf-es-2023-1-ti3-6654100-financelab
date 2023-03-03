@@ -4,17 +4,17 @@ O FinanceLab vai te permitir monitorar e controlar os seus investimentos a um cl
 
 ## Alunos integrantes da equipe
 
-*Ana Carolina de Carvalho Corrêa
+* Ana Carolina de Carvalho Corrêa
 
-*Fabiana Dinelli Salvático de Paula Kraft
+* Fabiana Dinelli Salvático de Paula Kraft
 
-*Fernando Lúcio Mello do Couto
+* Fernando Lúcio Mello do Couto
 
-*Henrique Pinto Santos
+* Henrique Pinto Santos
 
-*Pedro Henrique Fernandes Machado
+* Pedro Henrique Fernandes Machado
 
-*Pedro Talma Toledo
+* Pedro Talma Toledo
 
 ## Professores responsáveis
 
