@@ -4,12 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import financeLabLogo from '../../img/FinanceLabLogo.png'
 import imgLogin from '../../img//LoginImgs/imglogin.jpg'
 
+import { Link } from "react-router-dom";
+
 export default function Login() {
   return (
     <div>
-      <a class="titulo" href="index">
+      
+      <Link to="/" class="titulo">
         <img width="300px" src={financeLabLogo} alt="Logo" />
-      </a>
+      </Link>
       <div class="img-main">
         <img class="imagem" src={imgLogin} alt="" />
       </div>
@@ -20,6 +23,8 @@ export default function Login() {
               <p>E-mail ou senha incorretos</p>
             </div>
 
+
+            <h1 class="text-center">Login</h1>
             {/* <!-- Email input --> */}
             <div class="form-outline mb-4">
               <input type="email" id="form2Example1" class="form-control" />
@@ -79,9 +84,9 @@ export default function Login() {
             <div class="text-center">
               <p>
                 Não é um membro ainda?{' '}
-                <a class="color" href="#!">
+                <Link to="/cadastro" class="color">
                   Cadastrar
-                </a>
+                </Link>
               </p>
             </div>
           </form>
