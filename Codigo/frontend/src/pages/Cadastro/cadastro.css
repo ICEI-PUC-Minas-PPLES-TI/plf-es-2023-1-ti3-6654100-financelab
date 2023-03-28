@@ -1,0 +1,66 @@
+body {
+    ont-family: serif;
+    background-color: #0d3858 !important;
+    color: white !important;
+  }
+  
+  .titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 10px;
+  }
+  
+  footer {
+    text-align: center;
+    background-color: white;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: black !important;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  
+  .botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .img-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .imagem {
+    height: 400px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .color {
+    color: #ef9b14 !important;
+  }
+  
+  .pad {
+    padding-top: 20px;
+  }
+  
+  #loginInvalido p{
+    margin: 0;
+    padding: 0;
+    color: #fa0000;
+    font-size: 12px;
+  }
+  
+  
+  
+  
+  
