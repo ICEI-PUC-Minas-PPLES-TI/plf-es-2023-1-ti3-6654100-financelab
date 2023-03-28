@@ -8,6 +8,9 @@ import financeLabLogo from '../../img/FinanceLabLogo.png'
 import contaMao from '../../img/HomeImgs/contaMao.jpeg'
 import cadastroInvest from '../../img/HomeImgs/cadastroInvest.jpeg'
 
+
+import { Link } from "react-router-dom";
+
 export default function Home() {
   return (
     <div>
@@ -51,8 +54,8 @@ export default function Home() {
             <div
               class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
             >
-              <a
-                href="home.html"
+              <Link to="/"
+                
                 class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-black text-decoration-none"
               >
                 {/* <svg
@@ -65,18 +68,19 @@ export default function Home() {
                   <img width="25%" src={financeLabLogo} alt="Logo" />
                 </svg> */}
                 <img width="25%" src={financeLabLogo} alt="Logo" />
-              </a>
+              </Link>
+
 
               <ul
                 class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
               >
                 <li>
-                  <a href="#" class="nav-link text-secondary">
+                  <Link to="/" class="nav-link text-secondary">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                       <use xlinkHref="#home"></use>
                     </svg>
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a href="#" class="nav-link text-black disabled">
@@ -103,12 +107,12 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="login." class="nav-link text-black">
+                  <Link to="/login" class="nav-link text-black">
                     <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                       <use xlinkHref="#people-circle"></use>
                     </svg>
                     Login
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
