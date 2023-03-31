@@ -14,105 +14,105 @@ export default function Login() {
 
   async function handleLogin(event) {
     event.preventDefault()
+
     try {
       const response = await api.post('login', {email, senha})
-      localStorage.setItem('userId', response.data.id)
-
+      localStorage.setItem('userEmail', response.data.email)
       navigate('/')
 
     } catch (err) {
-      setDisplay(display === 'visible')
+      setDisplay('')
     }
   }
 
   return (
     <div>
-      <Link to="/" class="titulo">
+      <Link to="/" className="titulo">
         <img width="300px" src={financeLabLogo} alt="Logo" />
       </Link>
-      <div class="img-main">
-        <img class="imagem" src={imgLogin} alt="" />
+      <div className="img-main">
+        <img className="imagem" src={imgLogin} alt="" />
       </div>
-      <div class="container">
-        <div class="row">
-          <form class="col-sm-12 col-md-6 col-lg-3" onSubmit={handleLogin}>
-            <h1 class="text-center">Login</h1>
+      <div className="container">
+        <div className="row">
+          <form className="col-sm-12 col-md-6 col-lg-3" onSubmit={handleLogin}>
+            <h1 className="text-center">Login</h1>
             {/* <!-- Email input --> */}
 
             <div id="loginInvalido" style={{ display: display }}>
               <p>E-mail ou senha incorretos</p>
             </div>
 
-            <div class="form-outline mb-4">
+            <div className="form-outline mb-4">
               <input 
                 type="email" 
                 id="form2Example1" 
-                class="form-control"
+                className="form-control"
                 value={email}
                 onChange={event => setEmail(event.target.value)} 
               />
-              <label class="form-label" for="form2Example1">
+              <label className="form-label" htmlFor="form2Example1">
                 Email
               </label>
             </div>
 
             {/* <!-- Password input --> */}
-            <div class="form-outline mb-2">
+            <div className="form-outline mb-2">
               <input 
                 type="password" 
                 id="form2Example2" 
-                class="form-control" 
+                className="form-control" 
                 value={senha}
                 onChange={event => setSenha(event.target.value)} 
               />
-              <label class="form-label" for="form2Example2">
+              <label className="form-label" htmlFor="form2Example2">
                 Senha
               </label>
             </div>
 
             {/* <!-- 2 column grid layout for inline styling --> */}
-            <div class="row mb-2">
-              {/* <div class="col d-flex justify-content-center">
+            <div className="row mb-2">
+              {/* <div className="col d-flex justify-content-center">
                 {/* <!-- Checkbox --> */}
-                {/* <div class="form-check">
+                {/* <div className="form-check">
                   <input
-                    class="form-check-input warning"
+                    className="form-check-input warning"
                     type="checkbox"
                     value=""
                     id="form2Example31"
                     checked
                   />
-                  <label class="form-check-label" for="form2Example31">
+                  <label className="form-check-label" for="form2Example31">
                     {' '}
                     Lembrar de mim{' '}
                   </label>
                 </div> */}
               {/* </div> */}
 
-              <div class="col">
+              <div className="col">
                 {/* <!-- Simple link --> */}
-                <a class="color" href="#!">
+                <a className="color" href="#!">
                   Esqueceu a senha?
                 </a>
               </div>
             </div>
 
             {/* <!-- Submit button --> */}
-            <div class="botao">
+            <div className="botao">
               <button
                 id="enviar"
                 type="submit"
-                class="btn btn-warning btn-block mb-4"
+                className="btn btn-warning btn-block mb-4"
               >
                 Enviar
               </button>
             </div>
 
             {/* <!-- Register buttons --> */}
-            <div class="text-center">
+            <div className="text-center">
               <p>
                 Não é um membro ainda?{' '}
-                <Link to="/cadastro" class="color">
+                <Link to="/cadastro" className="color">
                   Cadastrar
                 </Link>
               </p>
