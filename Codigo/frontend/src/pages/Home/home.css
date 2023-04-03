@@ -54,3 +54,9 @@ header{
     font-size: medium;
     font-family:serif;
 }
+
+#logout{
+    border: none;
+    background: none;
+    cursor: pointer;
+}

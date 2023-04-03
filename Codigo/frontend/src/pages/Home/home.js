@@ -8,12 +8,9 @@ import financeLabLogo from '../../img/FinanceLabLogo.png'
 import contaMao from '../../img/HomeImgs/contaMao.jpeg'
 import cadastroInvest from '../../img/HomeImgs/cadastroInvest.jpeg'
 import api from '../../services/api'
-
-
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 export default function Home() {
-
   const [displayNone, setDisplayNone] = useState('none')
   const [displayVisible, setDisplayVisible] = useState('visible')
   const userEmail = localStorage.getItem('userEmail')
@@ -33,6 +30,11 @@ export default function Home() {
       )
     }
   }, [userEmail])
+
+  function handleLogout(){
+    localStorage.clear()
+    window.location.reload()
+  }
 
   return (
     <div>
@@ -91,13 +93,18 @@ export default function Home() {
                   <img width="25%" src={financeLabLogo} alt="Logo" />
                 </Link>
 
-
-                <ul
-                  className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small"
-                >
+                <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                   <li>
-                    <Link to="/" className="nav-link text-secondary" style={{ display: displayNone }}>
-                      <svg className="bi d-block mx-auto mb-1" width="24" height="24">
+                    <Link
+                      to="/"
+                      className="nav-link text-secondary"
+                      style={{ display: displayNone }}
+                    >
+                      <svg
+                        className="bi d-block mx-auto mb-1"
+                        width="24"
+                        height="24"
+                      >
                         <use xlinkHref="#home"></use>
                       </svg>
                       Home
@@ -142,11 +149,12 @@ export default function Home() {
         </header>
         <section
           id="apresentacao"
-          style={{ backgroundImage: `url(${brightBackground})`, backgroundSize: 'cover' }}
+          style={{
+            backgroundImage: `url(${brightBackground})`,
+            backgroundSize: 'cover'
+          }}
         >
-          <div
-            className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
-          >
+          <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
             <div className="col-md-5 p-lg-5 mx-auto my-5">
               <h1 className="display-4 fw-normal text-black">
                 Gerenciador de investimentos
