@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import './login.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import financeLabLogo from '../../img/FinanceLabLogo.png'
-import imgLogin from '../../img//LoginImgs/imglogin.jpg'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../../services/api'
+import financeLabLogo from '../../img/FinanceLabLogo.png'
+import imgLogin from '../../img//LoginImgs/imglogin.jpg'
+import './login.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -16,13 +16,25 @@ export default function Login() {
     event.preventDefault()
 
     try {
-      const response = await api.post('login', {email, senha})
+      const response = await api.post('login', { email, senha })
       localStorage.setItem('userEmail', response.data.email)
+      localStorage.setItem('userId', response.data.id)
+
       navigate('/')
 
     } catch (err) {
       setDisplay('')
     }
+  }
+
+  function navigateToOtp() {
+    if (email) {
+      api.post("/send_recovery_email", { email })
+        .then(() => navigate('/otp'))
+        .catch(console.log);
+      return;
+    }
+    return alert("Por favor introduza o seu e-mail");
   }
 
   return (
@@ -43,13 +55,13 @@ export default function Login() {
               <p>E-mail ou senha incorretos</p>
             </div>
 
-            <div className="form-outline mb-4">
-              <input 
-                type="email" 
-                id="form2Example1" 
-                className="form-control"
+            <div class="form-outline mb-4">
+              <input
+                type="email"
+                id="form2Example1"
+                class="form-control"
                 value={email}
-                onChange={event => setEmail(event.target.value)} 
+                onChange={event => setEmail(event.target.value)}
               />
               <label className="form-label" htmlFor="form2Example1">
                 Email
@@ -57,13 +69,13 @@ export default function Login() {
             </div>
 
             {/* <!-- Password input --> */}
-            <div className="form-outline mb-2">
-              <input 
-                type="password" 
-                id="form2Example2" 
-                className="form-control" 
+            <div class="form-outline mb-2">
+              <input
+                type="password"
+                id="form2Example2"
+                class="form-control"
                 value={senha}
-                onChange={event => setSenha(event.target.value)} 
+                onChange={event => setSenha(event.target.value)}
               />
               <label className="form-label" htmlFor="form2Example2">
                 Senha
@@ -74,7 +86,8 @@ export default function Login() {
             <div className="row mb-2">
               {/* <div className="col d-flex justify-content-center">
                 {/* <!-- Checkbox --> */}
-                {/* <div className="form-check">
+              {/* <div className="form-check">
+              {/* <div class="form-check">
                   <input
                     className="form-check-input warning"
                     type="checkbox"
@@ -92,7 +105,9 @@ export default function Login() {
               <div className="col">
                 {/* <!-- Simple link --> */}
                 <a className="color" href="#!">
-                  Esqueceu a senha?
+                  <Link onClick={() => navigateToOtp()} class="color">
+                    Esqueceu a senha?
+                  </Link>
                 </a>
               </div>
             </div>
