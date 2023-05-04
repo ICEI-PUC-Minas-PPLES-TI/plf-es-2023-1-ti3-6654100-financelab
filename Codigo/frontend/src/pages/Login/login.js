@@ -27,16 +27,6 @@ export default function Login() {
     }
   }
 
-  function navigateToOtp() {
-    if (email) {
-      api.post("/send_recovery_email", { email })
-        .then(() => navigate('/otp'))
-        .catch(console.log);
-      return;
-    }
-    return alert("Por favor introduza o seu e-mail");
-  }
-
   return (
     <div>
       <Link to="/" className="titulo">
@@ -105,7 +95,7 @@ export default function Login() {
               <div className="col">
                 {/* <!-- Simple link --> */}
                 <a className="color" href="#!">
-                  <Link onClick={() => navigateToOtp()} class="color">
+                  <Link to="/trocarSenha" class="color">
                     Esqueceu a senha?
                   </Link>
                 </a>
