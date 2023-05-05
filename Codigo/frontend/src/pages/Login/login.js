@@ -45,11 +45,11 @@ export default function Login() {
               <p>E-mail ou senha incorretos</p>
             </div>
 
-            <div class="form-outline mb-4">
+            <div className="form-outline mb-4">
               <input
                 type="email"
                 id="form2Example1"
-                class="form-control"
+                className="form-control"
                 value={email}
                 onChange={event => setEmail(event.target.value)}
               />
@@ -59,11 +59,11 @@ export default function Login() {
             </div>
 
             {/* <!-- Password input --> */}
-            <div class="form-outline mb-2">
+            <div className="form-outline mb-2">
               <input
                 type="password"
                 id="form2Example2"
-                class="form-control"
+                className="form-control"
                 value={senha}
                 onChange={event => setSenha(event.target.value)}
               />
