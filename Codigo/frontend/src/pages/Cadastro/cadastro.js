@@ -20,7 +20,7 @@ export default function Cadastro() {
         event.preventDefault();
         try {
             console.log('oi');
-            await api.post('usuario', { email, nome, telefone, senha, perguntaSeguranca });
+            await api.post('usuarios', { email, nome, telefone, senha, perguntaSeguranca });
             setDisplay(display === 'visible')
             setTimeout(() => {
                 navigate('/login')
