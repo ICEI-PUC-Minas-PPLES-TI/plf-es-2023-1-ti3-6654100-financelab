@@ -131,7 +131,7 @@ export default function Home() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="nav-link text-secondary" style={{ display: none }}>
+                    <Link to="/investimento2" className="nav-link text-secondary" style={{ display: none }}>
                       <svg className="bi d-block mx-auto mb-1" width="24" height="24">
                         <use xlinkHref="#grid"></use>
                       </svg>
