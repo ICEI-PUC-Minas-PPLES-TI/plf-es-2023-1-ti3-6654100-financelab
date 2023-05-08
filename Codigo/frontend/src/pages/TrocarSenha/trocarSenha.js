@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './trocarSenha.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Link, useNavigate } from 'react-router-dom'
 import financeLabLogo from '../../img/FinanceLabLogo.png'
+import api from '../../services/api'
+
 
 export default function TrocarSenha() {
 
@@ -10,33 +12,67 @@ export default function TrocarSenha() {
     const [senha, setSenha] = useState('')
     const [senhaConfirm, setSenhaConfirm] = useState('')
     const [pergunta, setPergunta] = useState('')
-    const [emailConfirm, setEmailConfirm] = useState('')
+    const [email, setEmail] = useState('')
+    const [perguntaResposta, setPerguntaResposta] = useState([])
+
 
     async function handleSubmit(event) {
         event.preventDefault()
-
         try {
-            const response = await api.post('trocarSenha', { email })
-            response.then(res => {
-                if (res === pergunta) {
+            const response = await api.post('confirmaEmail', { email })
+            // setPerguntaResposta(response.data.perguntaResposta)
+            localStorage.setItem('userPergunta', response.data.perguntaSeguranca)
+            const resposta = localStorage.getItem('userPergunta')
+            // console.log(perguntaResposta)
 
-                }
-            })
-            navigate('/')
+
+            // .then(response => {
+            //     console.log(response.data.perguntaSeguranca)
+
+            //     setPerguntaSeguranca(response.data)
+            //     console.log(perguntaSeguranca)
+            if (resposta === pergunta) {
+                console.log('entrou if')
+                updateSenha()
+            } else {
+                console.log('ERRRRRRRRRROOOOOOOOOOOOO')
+            }
+            // })
+            // .then(console.log(perguntaResposta))
+            console.log("handle sumbmit entrou")
+        } catch (err) {
+            console.log('handle submit erro')
+        }
+    }
+
+    async function updateSenha() {
+        // event.preventDefault()
+        console.log('foi')
+        try {
+            await api.post('trocarSenha', { senha, email })
+            if (senha !== senhaConfirm) {
+                alert('As senhas não coincidem')
+                
+            }else{
+                alert('Senha atualizada')
+                navigate('/login')
+            }
+
+            console.log('entrou updateSenha try')
 
         } catch (err) {
-            setDisplay('')
+            console.log('update Senha')
         }
     }
 
 
-    function changePassword() {
-        if (senha !== senhaConfirm) {
-            alert('As senhas não coincidem')
-            return
-        }
-        navigate('/login')
-    }
+    // function changePassword() {
+    //     if (senha !== senhaConfirm) {
+    //         alert('As senhas não coincidem')
+    //         return false
+    //     }
+    //     return true
+    // }
 
     return (
         <div>
@@ -58,32 +94,32 @@ export default function TrocarSenha() {
 
                     <div class="container">
 
-                        <form class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+                        <form class="col-sm-12 col-md-6 col-lg-3 mx-auto" onSubmit={handleSubmit}>
 
                             <div class="mb-3">
                                 <label htmlFor="password" class="form-label">Confirme seu E-mail</label>
-                                <input type="email" name="emailConfirm" id="emailConfirm" class="form-control" value={emailConfirm} placeholder="••••••••" onChange={(e) => setEmailConfirm(e.currentTarget.value)}></input>
+                                <input type="email" name="emailConfirm" id="emailConfirm" class="form-control" value={email} placeholder="••••••••" onChange={e => setEmail(e.currentTarget.value)}></input>
                             </div>
 
                             <div class="mb-3">
                                 <label htmlFor="password" class="form-label">Pergunta de Segurança</label>
-                                <input type="text" name="pergunta" id="perguntaSeguranca" class="form-control" value={pergunta} placeholder="••••••••" onChange={(e) => setPergunta(e.currentTarget.value)}></input>
+                                <input type="text" name="pergunta" id="perguntaSeguranca" class="form-control" value={pergunta} placeholder="••••••••" onChange={e => setPergunta(e.currentTarget.value)}></input>
                             </div>
 
 
                             <div class="mb-3">
                                 <label htmlFor="password" class="form-label">Nova senha</label>
-                                <input type="password" name="password" id="password" class="form-control" value={senha} placeholder="••••••••" onChange={(e) => setSenha(e.currentTarget.value)}></input>
+                                <input type="password" name="password" id="password" class="form-control" value={senha} placeholder="••••••••" onChange={e => setSenha(e.currentTarget.value)}></input>
                             </div>
 
                             <div class="mb-3">
                                 <label htmlFor="confirm-password" class="form-label">Confirme a nova senha</label>
-                                <input type="password" name="confirm-password" id="confirm-password" class="form-control" value={senhaConfirm} placeholder="••••••••" onChange={(e) => setSenhaConfirm(e.currentTarget.value)}></input>
+                                <input type="password" name="confirm-password" id="confirm-password" class="form-control" value={senhaConfirm} placeholder="••••••••" onChange={e => setSenhaConfirm(e.currentTarget.value)}></input>
                             </div>
 
                             <div class="botao">
                                 <button
-                                    onClick={() => changePassword()}
+                                    // onClick={() => changePassword()}
                                     id="enviar"
                                     type="submit"
                                     class="btn btn-block mb-4"

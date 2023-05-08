@@ -4,10 +4,12 @@ module.exports = {
     async confirmaEmail(req, res){
         const {email} = req.body
     
-        const usuario = await connection('usuario').where('email', email).select('perguntaSeguranca')
+        const pergunta = await connection('usuario').where('email', email).select('*')
 
-        if (usuario.length > 0) {
-            res.status(200).json(usuario)
+        if (pergunta.length > 0) {
+            res.status(200).json({
+                perguntaSeguranca : pergunta[0].perguntaSeguranca  
+            })
         } else {
             res.status(403).json({ message: 'acesso negado' })
         }

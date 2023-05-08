@@ -25,4 +25,6 @@ routes.post('/confirmaEmail', TrocarSenhaService.confirmaEmail)
 routes.post('/trocarSenha', TrocarSenhaService.updateSenha)
 
 
+
+
 module.exports = routes
