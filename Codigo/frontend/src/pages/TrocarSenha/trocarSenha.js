@@ -9,6 +9,26 @@ export default function TrocarSenha() {
     const navigate = useNavigate()
     const [senha, setSenha] = useState('')
     const [senhaConfirm, setSenhaConfirm] = useState('')
+    const [pergunta, setPergunta] = useState('')
+    const [emailConfirm, setEmailConfirm] = useState('')
+
+    async function handleSubmit(event) {
+        event.preventDefault()
+
+        try {
+            const response = await api.post('trocarSenha', { email })
+            response.then(res => {
+                if (res === pergunta) {
+
+                }
+            })
+            navigate('/')
+
+        } catch (err) {
+            setDisplay('')
+        }
+    }
+
 
     function changePassword() {
         if (senha !== senhaConfirm) {
@@ -38,7 +58,18 @@ export default function TrocarSenha() {
 
                     <div class="container">
 
-                        <form class="col-sm-12 col-md-6 col-lg-3 mx-auto" >
+                        <form class="col-sm-12 col-md-6 col-lg-3 mx-auto">
+
+                            <div class="mb-3">
+                                <label htmlFor="password" class="form-label">Confirme seu E-mail</label>
+                                <input type="email" name="emailConfirm" id="emailConfirm" class="form-control" value={emailConfirm} placeholder="••••••••" onChange={(e) => setEmailConfirm(e.currentTarget.value)}></input>
+                            </div>
+
+                            <div class="mb-3">
+                                <label htmlFor="password" class="form-label">Pergunta de Segurança</label>
+                                <input type="text" name="pergunta" id="perguntaSeguranca" class="form-control" value={pergunta} placeholder="••••••••" onChange={(e) => setPergunta(e.currentTarget.value)}></input>
+                            </div>
+
 
                             <div class="mb-3">
                                 <label htmlFor="password" class="form-label">Nova senha</label>

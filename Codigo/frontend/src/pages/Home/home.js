@@ -151,7 +151,7 @@ export default function Home() {
                       <svg className="bi d-block mx-auto mb-1" width="24" height="24">
                         <use xlinkHref="#logout"></use>
                       </svg>
-                      Login
+                      Logout
                     </Link>
                   </li>
                 </ul>

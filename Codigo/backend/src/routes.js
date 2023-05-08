@@ -4,6 +4,7 @@ const UsuarioService = require('./Usuario/UsuarioService')
 const HomeController = require('./Home/HomeController')
 const InvestimentoController = require('./Investimentos/InvestimentosController') 
 const InvestimentoServices = require('./Investimentos/InvestimentoService')
+const TrocarSenhaService = require('./TrocarSenha/TrocarSenhaService')
 
 const routes = express.Router()
 
@@ -20,5 +21,8 @@ routes.post('/updateInvestimentos', InvestimentoServices.updateInvestimento)
 
 routes.post('/tipo/investimento', InvestimentoController.createTipoInvestimento)
 routes.get('/tipo/investimento/:id', InvestimentoController.getTiposDeInvestimentoById)
+routes.post('/confirmaEmail', TrocarSenhaService.confirmaEmail)
+routes.post('/trocarSenha', TrocarSenhaService.updateSenha)
+
 
 module.exports = routes
