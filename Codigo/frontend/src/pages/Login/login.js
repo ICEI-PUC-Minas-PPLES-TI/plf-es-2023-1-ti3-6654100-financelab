@@ -27,16 +27,6 @@ export default function Login() {
     }
   }
 
-  function navigateToOtp() {
-    if (email) {
-      api.post("/send_recovery_email", { email })
-        .then(() => navigate('/otp'))
-        .catch(console.log);
-      return;
-    }
-    return alert("Por favor introduza o seu e-mail");
-  }
-
   return (
     <div>
       <Link to="/" className="titulo">
@@ -55,11 +45,11 @@ export default function Login() {
               <p>E-mail ou senha incorretos</p>
             </div>
 
-            <div class="form-outline mb-4">
+            <div className="form-outline mb-4">
               <input
                 type="email"
                 id="form2Example1"
-                class="form-control"
+                className="form-control"
                 value={email}
                 onChange={event => setEmail(event.target.value)}
               />
@@ -69,11 +59,11 @@ export default function Login() {
             </div>
 
             {/* <!-- Password input --> */}
-            <div class="form-outline mb-2">
+            <div className="form-outline mb-2">
               <input
                 type="password"
                 id="form2Example2"
-                class="form-control"
+                className="form-control"
                 value={senha}
                 onChange={event => setSenha(event.target.value)}
               />
@@ -105,7 +95,7 @@ export default function Login() {
               <div className="col">
                 {/* <!-- Simple link --> */}
                 <a className="color" href="#!">
-                  <Link onClick={() => navigateToOtp()} class="color">
+                  <Link to="/trocarSenha" class="color">
                     Esqueceu a senha?
                   </Link>
                 </a>

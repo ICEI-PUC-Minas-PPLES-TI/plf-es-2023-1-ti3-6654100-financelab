@@ -1,0 +1,25 @@
+.table>thead {
+    vertical-align: bottom;
+    color: aliceblue;
+}
+tbody, td, tfoot, th, thead, tr {
+    color: aliceblue !important;
+}
+
+.form-label {
+    color: black;
+}
+
+.label-modal {
+    color: black !important;
+}
+
+.modal-header {
+    color: black;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

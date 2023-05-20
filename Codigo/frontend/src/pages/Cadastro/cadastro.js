@@ -11,6 +11,7 @@ export default function Cadastro() {
     const [nome, setNome] = useState('');
     const [telefone, setTelefone] = useState('');
     const [senha, setSenha] = useState('');
+    const [perguntaSeguranca, setPerguntaSeguranca] = useState('');
     const [display, setDisplay] = useState('none')
     const navigate = useNavigate()
 
@@ -19,7 +20,7 @@ export default function Cadastro() {
         event.preventDefault();
         try {
             console.log('oi');
-            await api.post('usuario', { email, nome, telefone, senha });
+            await api.post('usuarios', { email, nome, telefone, senha, perguntaSeguranca });
             setDisplay(display === 'visible')
             setTimeout(() => {
                 navigate('/login')
@@ -91,6 +92,21 @@ export default function Cadastro() {
                                     onChange={event => setTelefone(event.target.value)}
                                 />
                                 <label class="form-label" for="form3Example3c">Telefone</label>
+                            </div>
+                        </div>
+
+                         {/* <!-- Pergunta seguranca input --> */}
+                         <div class="d-flex flex-row align-items-center mb-4">
+                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                            <div class="form-outline flex-fill mb-0">
+                                <input
+                                    type="text"
+                                    id="form3Example3c"
+                                    class="form-control"
+                                    value={perguntaSeguranca}
+                                    onChange={event => setPerguntaSeguranca(event.target.value)}
+                                />
+                                <label class="form-label" for="form3Example3c">Pergunta de Segurança: Qual era seu apelido de infância?</label>
                             </div>
                         </div>
 
