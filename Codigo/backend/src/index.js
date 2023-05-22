@@ -13,5 +13,16 @@ app.use(cors(corsOptions))
 app.use(express.json());
 app.use(routes);
 
-app.listen(3333);
+//app.listen(3333);
+init();
 
+async function init() {
+  try {
+    app.listen(3333, () => {
+      console.log("Express App Listening on Port 3333");
+    });
+  } catch (error) {
+    console.error(`An error occurred: ${JSON.stringify(error)}`);
+    process.exit(1);
+  }
+}

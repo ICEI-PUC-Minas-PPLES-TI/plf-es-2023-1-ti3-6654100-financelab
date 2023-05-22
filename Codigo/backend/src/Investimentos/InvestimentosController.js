@@ -26,6 +26,14 @@ module.exports = {
         const id = req.params.id;
         const result = await InvestimentoService.getAllInvestimentosByUserId(id);
         return res.json({ result })
+    },
+    async getAllacoes(req, res) {
+        
+        console.log(req.query);
+       
+        
+        await InvestimentoService.getDadosAPIExterna(req,res);
+    
     }
 }
 

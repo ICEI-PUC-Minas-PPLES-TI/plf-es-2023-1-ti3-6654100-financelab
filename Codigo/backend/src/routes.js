@@ -23,7 +23,7 @@ routes.post('/tipo/investimento', InvestimentoController.createTipoInvestimento)
 routes.get('/tipo/investimento/:id', InvestimentoController.getTiposDeInvestimentoById)
 routes.post('/confirmaEmail', TrocarSenhaService.confirmaEmail)
 routes.post('/trocarSenha', TrocarSenhaService.updateSenha)
-
+routes.get('/dados', InvestimentoServices.getDadosAPIExterna)
 
 
 
