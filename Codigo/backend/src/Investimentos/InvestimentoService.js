@@ -1,5 +1,5 @@
 const connection = require('../database/connection');
-
+const axios = require ('axios')
 module.exports = {
     async createTipoInvestimento(investimento) {
         return connection('tipo_investimento').insert(investimento);
@@ -55,5 +55,18 @@ module.exports = {
         } else {
             res.status(403).json({ message: 'investimento não existente' })
         }
-    }
+    },
+
+    async  getDadosAPIExterna(req, res) { //key = 4750d9b2
+        
+        const { key } = req.query;
+        console.log('entoru aqui',key,req.query);
+      try {
+        const result = await axios.get(`http://api.hgbrasil.com/finance?key=${key}`);
+        console.log(result.data);
+        res.status(201).json(result.data);
+      } catch (error) {
+        res.status(403).json({ message: 'Erro ao buscar informações na API' })
+      }
+}
 }
