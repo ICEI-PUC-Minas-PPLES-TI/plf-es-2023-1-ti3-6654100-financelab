@@ -30,7 +30,7 @@ module.exports = {
     },
 
     async deleteInvestimento(req, res) {
-        const { id } = req.body
+        const { id } = req.params
         const investimento = await connection('investimento').where({ id: id }).del()
 
         if (investimento > 0) {
@@ -41,7 +41,8 @@ module.exports = {
     },
 
     async updateInvestimento(req, res) {
-        const { id, preco_compra, preco_venda, nome, descricao } = req.body;
+        const { id } = req.params
+        const { preco_compra, preco_venda, nome, descricao } = req.body;
         const investimento = await connection('investimento').where({ id: id })
             .update({
                 preco_compra: preco_compra,
