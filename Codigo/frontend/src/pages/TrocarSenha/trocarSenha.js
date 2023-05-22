@@ -13,32 +13,21 @@ export default function TrocarSenha() {
     const [senhaConfirm, setSenhaConfirm] = useState('')
     const [pergunta, setPergunta] = useState('')
     const [email, setEmail] = useState('')
-    const [perguntaResposta, setPerguntaResposta] = useState([])
 
 
     async function handleSubmit(event) {
         event.preventDefault()
         try {
             const response = await api.post('confirmaEmail', { email })
-            // setPerguntaResposta(response.data.perguntaResposta)
             localStorage.setItem('userPergunta', response.data.perguntaSeguranca)
             const resposta = localStorage.getItem('userPergunta')
-            // console.log(perguntaResposta)
-
-
-            // .then(response => {
-            //     console.log(response.data.perguntaSeguranca)
-
-            //     setPerguntaSeguranca(response.data)
-            //     console.log(perguntaSeguranca)
+            
             if (resposta === pergunta) {
                 console.log('entrou if')
                 updateSenha()
             } else {
-                console.log('ERRRRRRRRRROOOOOOOOOOOOO')
+                console.log('Erro')
             }
-            // })
-            // .then(console.log(perguntaResposta))
             console.log("handle sumbmit entrou")
         } catch (err) {
             console.log('handle submit erro')
@@ -46,7 +35,6 @@ export default function TrocarSenha() {
     }
 
     async function updateSenha() {
-        // event.preventDefault()
         console.log('foi')
         try {
             await api.post('trocarSenha', { senha, email })
@@ -66,13 +54,6 @@ export default function TrocarSenha() {
     }
 
 
-    // function changePassword() {
-    //     if (senha !== senhaConfirm) {
-    //         alert('As senhas não coincidem')
-    //         return false
-    //     }
-    //     return true
-    // }
 
     return (
         <div>

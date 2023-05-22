@@ -28,7 +28,7 @@ export default function TipoInvestimento() {
             });
             
             alert('Tipo de Investimento Cadastrado com sucesso')
-            navigate('/investimento2');
+            navigate('/investimentos');
         } catch (err) {
             console.log(err);
         }

@@ -99,23 +99,7 @@ export default function Home() {
 
                 <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                   <li>
-                    <Link
-                      to="/"
-                      className="nav-link text-secondary"
-                      style={{ display: none }}
-                    >
-                      <svg
-                        className="bi d-block mx-auto mb-1"
-                        width="24"
-                        height="24"
-                      >
-                        <use xlinkHref="#home"></use>
-                      </svg>
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/" className="nav-link text-secondary" style={{ display: none }}>
+                    <Link to="/dashboard" className="nav-link text-secondary" style={{ display: none }}>
                       <svg className="bi d-block mx-auto mb-1" width="24" height="24">
                         <use xlinkHref="#speedometer2"></use>
                       </svg>
@@ -123,15 +107,15 @@ export default function Home() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/" className="nav-link text-secondary" style={{ display: none }}>
+                    <Link to="/tipoInvestimento" className="nav-link text-secondary" style={{ display: none }}>
                       <svg className="bi d-block mx-auto mb-1" width="24" height="24">
                         <use xlinkHref="#table"></use>
                       </svg>
-                      Relatório
+                      Tipos de investimentos
                     </Link>
                   </li>
                   <li>
-                    <Link to="/investimento2" className="nav-link text-secondary" style={{ display: none }}>
+                    <Link to="/investimentos" className="nav-link text-secondary" style={{ display: none }}>
                       <svg className="bi d-block mx-auto mb-1" width="24" height="24">
                         <use xlinkHref="#grid"></use>
                       </svg>
