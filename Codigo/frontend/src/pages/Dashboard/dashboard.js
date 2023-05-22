@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts';
 import api from '../../services/api';
+import './dashboard.css'
 
 export default function DashBoard() {
     const [data, setData] = useState([]);
@@ -35,7 +36,9 @@ export default function DashBoard() {
 
     return (
         <div>
-            <h1>Gráfico de investimentos</h1>
+            <h1 className='dashboardDiv'>Gráfico de investimentos</h1>
+
+        <div className='dashboardDiv'>
             <PieChart width={400} height={400}>
                 <Pie
                     data={data}
@@ -55,5 +58,7 @@ export default function DashBoard() {
                 <Legend />
             </PieChart>
         </div>
+        </div>
+
     )
 }
