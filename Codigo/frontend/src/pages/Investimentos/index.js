@@ -21,6 +21,7 @@ export default function InvestimentoDois() {
   const [upPrecoVenda, setUpPrecoVenda] = useState('')
   const [upDescricao, setUpDescricao] = useState('')
   const [upNome, setUpNome] = useState('')
+  // const [upTipoInvestimentoSelecionado, setUpTipoInvestimentoSelecionado] = useState('')
 
   const [tipoInvestimentoSelecionado, setTipoInvestimentoSelecionado] =
     useState('')
@@ -55,7 +56,9 @@ export default function InvestimentoDois() {
     }
   }
 
-  async function updateInvestimento(id) {
+  async function updateInvestimento() {
+    setUpDescricao(descricao)
+    const id = localStorage.getItem('investimentoId')
     try {
       await api.post(`updateInvestimentos/${id}`, {
         preco_compra: upPrecoCompra,
@@ -73,9 +76,10 @@ export default function InvestimentoDois() {
   useEffect(() => {
     ;(async () => {
       const id = localStorage.getItem('userId')
+
       const finalResult = await api.get(`tipo/investimento/${id}`)
       setTiposInvestimento(finalResult.data.result)
-      console.log(finalResult.data)
+      console.log(finalResult.data.result[0])
 
       setTipoInvestimentoSelecionado(
         finalResult.data.result.length > 0 ? finalResult.data.result[0].id : ''
@@ -89,7 +93,20 @@ export default function InvestimentoDois() {
   const handleCloseModal = () => setShowModal(false)
   const handleShowModal = () => setShowModal(true)
   const handleUpCloseModal = () => setShowUpModal(false)
-  const handleUpShowModal = () => setShowUpModal(true)
+  const handleUpShowModal = async id => {
+    setShowUpModal(true)
+    const investimento = await api.get(`investimento/${id}`)
+    setUpNome(investimento.data[0].nome)
+    setUpPrecoCompra(investimento.data[0].preco_compra)
+    setUpPrecoVenda(investimento.data[0].preco_venda)
+    setUpDescricao(investimento.data[0].descricao)
+    // setUpTipoInvestimentoSelecionado()
+    console.log(investimento.data[0])
+  }
+
+  // async function handleUpModal(id) {
+
+  // }
 
   return (
     <Container>
@@ -118,7 +135,14 @@ export default function InvestimentoDois() {
               <td>{investment.preco_compra}</td>
               <td>{investment.preco_venda}</td>
               <td>
-                <Button style={{ marginInline: '20px' }} onClick={handleUpShowModal}>
+                <Button
+                  style={{ marginInline: '20px' }}
+                  onClick={() => {
+                    handleUpShowModal(investment.id)
+                    // handleUpModal(investment.id)
+                    localStorage.setItem('investimentoId', investment.id)
+                  }}
+                >
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </Button>
                 <Button onClick={() => deleteInvestimentos(investment.id)}>
@@ -265,15 +289,16 @@ export default function InvestimentoDois() {
           <Button variant="secondary" onClick={handleUpCloseModal}>
             Fechar
           </Button>
-          {listInvestimentos.map(investment => (
-            <Button
-              key={investment.id}
-              variant="primary"
-              onClick={() => updateInvestimento(investment.id)}
-            >
-              Atualizar
-            </Button>
-          ))}
+          {/* {listInvestimentos.map(investment => (
+
+          ))} */}
+          <Button
+            // key={investment.id}
+            variant="primary"
+            onClick={() => updateInvestimento()}
+          >
+            Atualizar
+          </Button>
         </Modal.Footer>
       </Modal>
 

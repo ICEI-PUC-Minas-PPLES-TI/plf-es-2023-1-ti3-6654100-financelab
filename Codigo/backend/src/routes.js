@@ -13,6 +13,7 @@ routes.get('/home', HomeController.index)
 routes.post('/usuarios', UsuarioController.create)
 routes.post('/login', UsuarioService.login)
 routes.get('/investimentos', InvestimentoServices.index)
+routes.get('/investimento/:id', InvestimentoServices.getInvestimentoById)
 routes.post('/investimentos', InvestimentoController.create);
 routes.delete('/investimentos/:id', InvestimentoServices.deleteInvestimento)
 routes.get('/investimentos/all/:id', InvestimentoController.getAllinvestimentosByUserId)
@@ -23,8 +24,5 @@ routes.post('/tipo/investimento', InvestimentoController.createTipoInvestimento)
 routes.get('/tipo/investimento/:id', InvestimentoController.getTiposDeInvestimentoById)
 routes.post('/confirmaEmail', TrocarSenhaService.confirmaEmail)
 routes.post('/trocarSenha', TrocarSenhaService.updateSenha)
-
-
-
 
 module.exports = routes

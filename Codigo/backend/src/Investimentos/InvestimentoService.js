@@ -29,6 +29,12 @@ module.exports = {
         return res.json(investimentos)
     },
 
+    async getInvestimentoById(req, res) {
+        const { id } = req.params
+        const investimento = await connection('investimento').select('*').where({id: id});
+        return res.json(investimento)
+    },
+
     async deleteInvestimento(req, res) {
         const { id } = req.params
         const investimento = await connection('investimento').where({ id: id }).del()
