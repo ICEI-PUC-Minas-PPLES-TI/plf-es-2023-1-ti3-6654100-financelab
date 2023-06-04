@@ -18,6 +18,8 @@ routes.post('/investimentos', InvestimentoController.create);
 routes.delete('/investimentos/:id', InvestimentoServices.deleteInvestimento)
 routes.get('/investimentos/all/:id', InvestimentoController.getAllinvestimentosByUserId)
 
+routes.get('/investimentos/acoes/:userId', InvestimentoController.getAllInvestimentosAcoes)
+
 routes.post('/updateInvestimentos/:id', InvestimentoServices.updateInvestimento)
 
 routes.post('/tipo/investimento', InvestimentoController.createTipoInvestimento)
