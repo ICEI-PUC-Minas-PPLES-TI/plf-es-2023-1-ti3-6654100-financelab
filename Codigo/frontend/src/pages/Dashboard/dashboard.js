@@ -12,13 +12,14 @@ export default function DashBoard() {
             try {
                 const id = localStorage.getItem('userId')
                 const response = await api.get(`investimentos/all/${id}`);
-                response.data.result.forEach(el => {
+                const filtered = response.data.result.filter(each => !each.preco_venda);
+                filtered.forEach(el => {
                     if (el.preco_compra != '') {
-                        if (valueByType.has(el.Tipo)) {
-                            const newValue = valueByType.get(el.Tipo) + el.preco_compra;
-                            valueByType.set(el.Tipo, newValue)
+                        if (valueByType.has(el.tipo_investimento)) {
+                            const newValue = valueByType.get(el.tipo_investimento) + (el.preco_compra * el.quantidade);
+                            valueByType.set(el.tipo_investimento, newValue)
                         } else {
-                            valueByType.set(el.Tipo, el.preco_compra)
+                            valueByType.set(el.tipo_investimento, el.preco_compra * el.quantidade)
                         }
                     }
                 });

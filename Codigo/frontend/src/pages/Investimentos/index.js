@@ -11,6 +11,7 @@ export default function InvestimentoDois() {
   const [showModal, setShowModal] = useState(false)
   const [showUpModal, setShowUpModal] = useState(false)
   const [precoCompra, setPrecoCompra] = useState('')
+  const [quantidade, setQuantidade] = useState('')
   const [precoVenda, setPrecoVenda] = useState('')
   const [descricao, setDescricao] = useState('')
   const [nome, setNome] = useState('')
@@ -19,8 +20,10 @@ export default function InvestimentoDois() {
   const [fetchAgain, setFetch] = useState(false)
   const [upPrecoCompra, setUpPrecoCompra] = useState('')
   const [upPrecoVenda, setUpPrecoVenda] = useState('')
+  const [upQuantidade, setUpQuantidade] = useState('');
   const [upDescricao, setUpDescricao] = useState('')
   const [upNome, setUpNome] = useState('')
+  const [tipoInv, setTipoInv] = useState('Bolsa')
   // const [upTipoInvestimentoSelecionado, setUpTipoInvestimentoSelecionado] = useState('')
 
   const [tipoInvestimentoSelecionado, setTipoInvestimentoSelecionado] =
@@ -29,22 +32,31 @@ export default function InvestimentoDois() {
     setTipoInvestimentoSelecionado(e.target.value)
   }
 
+  const handleTipoInv = e => {
+    setTipoInv(e.target.value)
+  }
+
   async function handleSave(event) {
     event.preventDefault()
-
+    const userId = localStorage.getItem('userId')
     try {
       await api.post('investimentos', {
         preco_compra: precoCompra,
         preco_venda: precoVenda,
+        quantidade: quantidade,
         nome: nome,
         descricao: descricao,
-        tipo_investimento_id: tipoInvestimentoSelecionado
+        tipo_investimento: tipoInv,
+        usuario_id: userId
       })
       setFetch(!fetchAgain)
       handleCloseModal()
     } catch (err) {
       console.log(err)
     }
+    console.log('foi');
+    console.log(tipoInv
+    );
   }
 
   async function deleteInvestimentos(idInvestimento) {
@@ -64,7 +76,8 @@ export default function InvestimentoDois() {
         preco_compra: upPrecoCompra,
         preco_venda: upPrecoVenda,
         nome: upNome,
-        descricao: upDescricao
+        descricao: upDescricao,
+        quantidade: upQuantidade
       })
       window.location.reload()
       console.log('foi')
@@ -74,19 +87,20 @@ export default function InvestimentoDois() {
   }
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const id = localStorage.getItem('userId')
 
-      const finalResult = await api.get(`tipo/investimento/${id}`)
-      setTiposInvestimento(finalResult.data.result)
-      console.log(finalResult.data.result[0])
+      // const finalResult = await api.get(`tipo/investimento/${id}`)
+      // setTiposInvestimento(finalResult.data.result)
+      // console.log(finalResult.data.result[0])
 
-      setTipoInvestimentoSelecionado(
-        finalResult.data.result.length > 0 ? finalResult.data.result[0].id : ''
-      )
+      // setTipoInvestimentoSelecionado(
+      //   finalResult.data.result.length > 0 ? finalResult.data.result[0].id : ''
+      // )
 
       const allInvestimentos = await api.get(`investimentos/all/${id}`)
-      setListInvestimentos(allInvestimentos.data.result)
+      let filtered = allInvestimentos.data.result.filter(each => !each.preco_venda);
+      setListInvestimentos(filtered)
     })()
   }, [fetchAgain])
 
@@ -100,6 +114,7 @@ export default function InvestimentoDois() {
     setUpPrecoCompra(investimento.data[0].preco_compra)
     setUpPrecoVenda(investimento.data[0].preco_venda)
     setUpDescricao(investimento.data[0].descricao)
+    setUpQuantidade(investimento.data[0].quantidade)
     // setUpTipoInvestimentoSelecionado()
     console.log(investimento.data[0])
   }
@@ -117,10 +132,11 @@ export default function InvestimentoDois() {
             <th>Nome</th>
             <th>Descrição</th>
             <th>Tipo</th>
-            <th>Meta Mensal</th>
-            <th>Meta Diária</th>
+            {/* <th>Meta Mensal</th>
+            <th>Meta Diária</th> */}
             <th>Preço Compra</th>
             <th>Preço Venda</th>
+            <th>Quantidade</th>
             <th>Editar/Excluir</th>
           </tr>
         </thead>
@@ -129,11 +145,13 @@ export default function InvestimentoDois() {
             <tr key={investment.id}>
               <td>{investment.nome}</td>
               <td>{investment.descricao}</td>
-              <td>{investment.Tipo}</td>
-              <td>{investment.MetaMensal}</td>
-              <td>{investment.MetaDiaria}</td>
+              <td>{investment.tipo_investimento}</td>
+              {/* <td>{investment.MetaMensal}</td>
+              <td>{investment.MetaDiaria}</td> */}
               <td>{investment.preco_compra}</td>
               <td>{investment.preco_venda}</td>
+              <td>{investment.quantidade}</td>
+
               <td>
                 <Button
                   style={{ marginInline: '20px' }}
@@ -169,6 +187,15 @@ export default function InvestimentoDois() {
                 onChange={e => setPrecoCompra(e.target.value)}
               />
             </Form.Group>
+            <Form.Group controlId="quantidade">
+              <Form.Label>Quantidade</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite a quantidade"
+                value={quantidade}
+                onChange={e => setQuantidade(e.target.value)}
+              />
+            </Form.Group>
             <Form.Group controlId="precoVenda">
               <Form.Label>Preço de Venda</Form.Label>
               <Form.Control
@@ -202,14 +229,17 @@ export default function InvestimentoDois() {
               <Form.Label>Tipo de Investimento</Form.Label>
               <Form.Control
                 as="select"
-                value={tipoInvestimentoSelecionado}
-                onChange={handleTipoInvestimentoChange}
+                value={tipoInv}
+                onChange={handleTipoInv}
               >
-                {tiposInvestimento.map(tipo => (
+                {/* {tiposInvestimento.map(tipo => (
                   <option key={tipo.id} value={tipo.id}>
                     {tipo.Tipo}
                   </option>
-                ))}
+                ))} */}
+                <option value="Bolsa">Bolsa</option>
+                <option value="RendaFixa">Renda Fixa</option>
+                <option value="FundoImobiliario">Fundo Imobiliario</option>
               </Form.Control>
             </Form.Group>
           </Form>
@@ -227,7 +257,7 @@ export default function InvestimentoDois() {
       {/* Modal Update Investimento */}
       <Modal show={showUpModal} onHide={handleUpCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Criar Investimento</Modal.Title>
+          <Modal.Title>Atualizar Investimento</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -247,6 +277,15 @@ export default function InvestimentoDois() {
                 placeholder="Digite o preço de venda"
                 value={upPrecoVenda}
                 onChange={e => setUpPrecoVenda(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group controlId="quantidade">
+              <Form.Label>Quantidade</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite a quantidade"
+                value={upQuantidade}
+                onChange={e => setUpQuantidade(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="nome">
@@ -270,17 +309,20 @@ export default function InvestimentoDois() {
             </Form.Group>
 
             <Form.Group controlId="tipoInvestimento">
-              <Form.Label>Tipo de Investimento</Form.Label>
+              <Form.Label>AATipo de Investimento</Form.Label>
               <Form.Control
                 as="select"
                 value={tipoInvestimentoSelecionado}
                 onChange={handleTipoInvestimentoChange}
               >
-                {tiposInvestimento.map(tipo => (
+                {/* {tiposInvestimento.map(tipo => (
                   <option key={tipo.id} value={tipo.id}>
                     {tipo.Tipo}
                   </option>
-                ))}
+                ))} */}
+                <option value="Bolsa">Bolsa</option>
+                <option value="RendaFixa">Renda Fixa</option>
+                <option value="FundoImobiliario">Fundo Imobiliario</option>
               </Form.Control>
             </Form.Group>
           </Form>
