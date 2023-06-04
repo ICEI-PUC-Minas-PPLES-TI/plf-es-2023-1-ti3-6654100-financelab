@@ -9,8 +9,10 @@ exports.up = function(knex) {
         table.float('preco_venda');
         table.string('nome');
         table.string('descricao');
-        table.string('tipo_investimento_id').notNullable();
-        table.foreign('tipo_investimento_id').references('id').inTable('tipo_investimento');
+        table.string('quantidade');
+        table.string('tipo_investimento').notNullable();
+        table.string('usuario_id').notNullable();
+        table.foreign('usuario_id').references('id').inTable('usuario');
     })
 };
 

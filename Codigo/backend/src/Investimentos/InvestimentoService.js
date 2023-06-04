@@ -12,9 +12,9 @@ module.exports = {
 
 
     async getAllInvestimentosByUserId(id) {
-        const investimentos = await connection('tipo_investimento').select('*')
-            .join('investimento', 'tipo_investimento.id', '=', 'investimento.tipo_investimento_id')
-            .where('tipo_investimento.usuario_id', '=', id);
+        const investimentos = await connection('investimento').select('*').where('usuario_id', '=', id);
+        //     .join('investimento', 'tipo_investimento.id', '=', 'investimento.tipo_investimento_id')
+        //     .where('tipo_investimento.usuario_id', '=', id);
         return investimentos;
     },
 
@@ -48,13 +48,14 @@ module.exports = {
 
     async updateInvestimento(req, res) {
         const { id } = req.params
-        const { preco_compra, preco_venda, nome, descricao } = req.body;
+        const { preco_compra, preco_venda, nome, descricao, quantidade } = req.body;
         const investimento = await connection('investimento').where({ id: id })
             .update({
                 preco_compra: preco_compra,
                 preco_venda: preco_venda,
                 nome: nome,
-                descricao: descricao
+                descricao: descricao,
+                quantidade: quantidade,
             })
 
         if (investimento > 0) {
