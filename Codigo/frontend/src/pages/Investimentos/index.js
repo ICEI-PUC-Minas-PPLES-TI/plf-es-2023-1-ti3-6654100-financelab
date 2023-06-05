@@ -100,6 +100,7 @@ export default function InvestimentoDois() {
 
       const allInvestimentos = await api.get(`investimentos/all/${id}`)
       let filtered = allInvestimentos.data.result.filter(each => !each.preco_venda);
+      console.log(filtered)
       setListInvestimentos(filtered)
     })()
   }, [fetchAgain])

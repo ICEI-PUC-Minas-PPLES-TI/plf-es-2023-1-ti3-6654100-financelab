@@ -7,7 +7,7 @@ import TrocarSenha from './pages/TrocarSenha/trocarSenha'
 import TipoInvestimento from './pages/TipoInvestimento/tipoInvestimento'
 import Investimentos from './pages/Investimentos/index'
 import Dashboard from './pages/Dashboard/dashboard'
-import Acoes from './pages/Acoes/index'
+import Relatorio from './pages/Relatorio'
 
 export default function AppRoutes() {
   return (
@@ -15,12 +15,13 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/"  element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/tipoInvestimento" element={<TipoInvestimento />} />
+        {/* <Route path="/tipoInvestimento" element={<TipoInvestimento />} /> */}
         <Route path="/investimentos" element={<Investimentos />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/trocarSenha" element={<TrocarSenha />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/acoes" element={<Acoes />} />
+        {/* <Route path="/acoes" element={<Acoes />} /> */}
+        <Route path="/relatorio" element={<Relatorio />} />
       </Routes>
     </BrowserRouter>
   )

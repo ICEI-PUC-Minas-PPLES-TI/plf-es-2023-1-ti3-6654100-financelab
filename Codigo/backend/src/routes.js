@@ -14,6 +14,7 @@ routes.post('/usuarios', UsuarioController.create)
 routes.post('/login', UsuarioService.login)
 routes.get('/investimentos', InvestimentoServices.index)
 routes.get('/investimento/:id', InvestimentoServices.getInvestimentoById)
+routes.get('/investimento/relatorio/:id', InvestimentoServices.getInvestimentosComPrecoVenda)
 routes.post('/investimentos', InvestimentoController.create);
 routes.delete('/investimentos/:id', InvestimentoServices.deleteInvestimento)
 routes.get('/investimentos/all/:id', InvestimentoController.getAllinvestimentosByUserId)
