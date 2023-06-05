@@ -18,7 +18,23 @@ module.exports = {
         return investimentos;
     },
 
+    async getInvestimentosComPrecoVenda(req, res) {
+        const { id } = req.params;
+        const investimentos = await connection('investimento').select('*')
+            .where({usuario_id: id})
+            .andWhere('preco_venda', '!=', '')
 
+        return res.json(investimentos);
+    },
+
+    async getInvestimentosComPrecoVenda(req, res) {
+        const { id } = req.params;
+        const investimentos = await connection('investimento').select('*')
+            .where({usuario_id: id})
+            .andWhere('preco_venda', '!=', '')
+
+        return res.json(investimentos);
+    },
 
     async createInvestimento(investimento) {
         await connection('investimento').insert(investimento);

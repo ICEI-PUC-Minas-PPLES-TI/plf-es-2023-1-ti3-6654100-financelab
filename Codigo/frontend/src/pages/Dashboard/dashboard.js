@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { PieChart, Pie, Legend, Tooltip, Cell } from 'recharts'
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table } from 'react-bootstrap'
 import api from '../../services/api'
 import './dashboard.css'
+import financeLabLogo from '../../img/FinanceLabLogo.png'
+import { Link } from 'react-router-dom'
 
 export default function DashBoard() {
   const [data, setData] = useState([])
@@ -66,6 +68,24 @@ export default function DashBoard() {
 
   return (
     <div>
+      <header>
+        <div className="px-3 py-2 sticky-top container">
+          <div
+            className="d-flex flex-wrap align-items-center justify-content-center"
+            style={{ height: '100%' }}
+          >
+            <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+              <img
+                className="mx-auto"
+                style={{ maxWidth: '25%', maxHeight: '100%' }}
+                src={financeLabLogo}
+                alt="Logo"
+              />
+            </Link>
+          </div>
+        </div>
+      </header>
+
       <h1 className="dashboardDiv">Gráfico de investimentos</h1>
 
       <div className="dashboardDiv">
@@ -92,7 +112,7 @@ export default function DashBoard() {
         </PieChart>
       </div>
 
-      <Container className='container'>
+      <Container className="container">
         <h1>Suas ações em tempo real</h1>
         <Table striped bordered hover>
           <thead>
