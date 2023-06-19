@@ -6,8 +6,6 @@ O FinanceLab vai te permitir monitorar e controlar os seus investimentos a um cl
 
 * Ana Carolina de Carvalho Corrêa
 
-* Fabiana Dinelli Salvático de Paula Kraft
-
 * Fernando Lúcio Mello do Couto
 
 * Henrique Pinto Santos
@@ -23,4 +21,6 @@ O FinanceLab vai te permitir monitorar e controlar os seus investimentos a um cl
 
 ## Instruções de utilização
 
-[Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.]
+Relatório - Mostra investimentos finalizados, e o resumo financeiro deles
+Investimentos - Cadastro, edições e exclusões de investimentos
+Dashboard - Mostra investimentos ativos por tipo de investimento (pode demorar para carregar)
