@@ -464,9 +464,9 @@ export default function InvestimentoDois() {
           <Button variant="primary" onClick={handleShowModal}>
             Criar Investimento
           </Button>
-          <Link to="/tipoInvestimento">
+          {/* <Link to="/tipoInvestimento">
             <Button variant="primary">Criar Tipo de Investimento</Button>
-          </Link>
+          </Link> */}
         </div>
       </Container>
 
