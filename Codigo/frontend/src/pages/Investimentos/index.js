@@ -51,7 +51,12 @@ export default function InvestimentoDois() {
         tipo_investimento: tipoInv,
         usuario_id: userId
       })
-      setFetch(!fetchAgain)
+      setPrecoCompra('');
+      setPrecoVenda('');
+      setQuantidade('');
+      setNome('');
+      setDescricao('');
+      setFetch(!fetchAgain);
       handleCloseModal()
     } catch (err) {
       console.log(err)

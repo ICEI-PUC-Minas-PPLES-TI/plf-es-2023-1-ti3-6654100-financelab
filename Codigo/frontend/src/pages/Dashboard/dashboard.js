@@ -208,10 +208,11 @@ export default function DashBoard() {
       </div>
 
       <Container className="container">
-        <h1>Suas ações em tempo real</h1>
+        <h1>Suas ações e FII em tempo real</h1>
         <Table striped bordered hover>
           <thead>
             <tr>
+              <th>Tipo Investimento</th>
               <th>Nome</th>
               <th>Descrição</th>
               <th>Quantidade</th>
@@ -223,6 +224,7 @@ export default function DashBoard() {
           <tbody>
             {acoes.map(acoes => (
               <tr key={acoes.id}>
+                <td>{acoes.tipo_investimento}</td>
                 <td>{acoes.nome}</td>
                 <td>{acoes.descricao}</td>
                 <td>{acoes.quantidade}</td>
@@ -240,7 +242,7 @@ export default function DashBoard() {
         </Table>
       </Container>
 
-      <footer id="rodape" style={{ position: 'fixed', left: 0, bottom: 0, width: '100%' }}>
+      <footer id="rodapedash" style={{ position: 'fixed', left: 0, bottom: 0, width: '100%' }}>
       <div className="row">
         <div className="col-lg-12" id="copyright">
           <p><i className="far fa-copyright"></i> Copyright PUC MINAS 2023</p>
