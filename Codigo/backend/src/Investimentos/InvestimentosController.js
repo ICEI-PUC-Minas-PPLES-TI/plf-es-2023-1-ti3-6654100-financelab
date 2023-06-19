@@ -34,7 +34,7 @@ module.exports = {
         try {
             const userId = req.params.userId;
             let result = await InvestimentoService.getAllInvestimentosByUserId(userId);
-            result = result.filter(r => r.tipo_investimento === 'Bolsa');
+            result = result.filter(r => (r.tipo_investimento === 'Bolsa' || r.tipo_investimento === 'FundoImobiliario'));
             const finalResponse = [];
             for (const eachR of result) {
                 try {
