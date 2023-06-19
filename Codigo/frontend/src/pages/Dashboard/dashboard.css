@@ -8,3 +8,7 @@
 .container{
     margin-top: 30px;
 }
+
+#rodapedash {
+    display: none;
+}
