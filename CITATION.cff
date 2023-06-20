@@ -2,30 +2,28 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Carolina de Carvalho Corrêa
+    given-names: Ana
+  - family-names: Lúcio Mello do Couto
+    given-names: Fernando
+  - family-names: Pinto Santos
+    given-names: Henrique
+  - family-names: Henrique Fernandes Machado
+    given-names: Pedro
+  - family-names: Talma Toledo
+    given-names: Pedro
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Alonso Veloso
+    given-names: Eveline
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Henrique da Costa Silva
+    given-names: Luiz
 keywords:
-  - 
-  - 
-repository-code: 
+  - Programação
+  - ti3
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2023-1-ti3-6654100-financelab
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2023-06-19
